@@ -5,7 +5,7 @@ const attributes = ["id", "nama", "deskripsi"];
 const getAllData = async (req, res) => {
   let limit = req.query.limit ? parseInt(req.query.limit) : null;
   let page = req.query.page ? parseInt(req.query.page) : null;
-  let offset = (page - 1) * limit;
+  let offset = page != null ? (page - 1) * limit : 0;
   try {
     const data = await kategori.findAndCountAll({
       attributes,
